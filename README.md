@@ -11,7 +11,7 @@ bundle install
 ```
 
 ```
-$ bundle exec niz-sketch.rb --mode read
+$ bundle exec niz.rb --mode read
 Version: 66EC(S)BLe;V1.0.37;V1.0;                                                               
 66 keys                                                                                         
 Reading key mapping...                                                                          
@@ -94,3 +94,8 @@ Reading key counter...
 | 66     | [ 90] Right Arrow | [ 144] Backlight Lightness-   | [ 144] Backlight Lightness-   | 39    |
 +--------+-------------------+-------------------------------+-------------------------------+-------+
 ```
+
+## Write keymap
+
+See [./write-example.rb](./write-example.rb)
+
