@@ -52,7 +52,7 @@ class NiZ
 		39 => '[',
 		40 => ']',
 		41 => '\\',
-		42 => '', # TODO
+		42 => 'CapsLock',
 		43 => 'A',
 		44 => 'S',
 		45 => 'D',
@@ -78,29 +78,47 @@ class NiZ
 		65 => '/',
 		66 => 'R-Shift',
 		67 => 'L-CTRL',
-		68 => 'Super',
+		68 => 'Left-Super',
 		69 => 'L-Alt',
 		70 => 'Space',
 		71 => 'R-Alt',
-		72 => '', # TODO
-		73 => '', # TODO
+		72 => 'Right-Super',
+		73 => 'ContextMenu',
 		74 => 'R-Ctrl',
-		75 => '', # TODO
-		76 => '', # TODO
-		77 => '', # TODO
+		75 => 'Wakeup',
+		76 => 'Sleep',
+		77 => 'Power',
 		78 => 'PriSc',
 		79 => 'SclLk',
 		80 => 'Pause',
 		81 => 'Ins',
 		82 => 'Home',
-		83 => '', # TODO
+		83 => 'PageUp',
 		84 => 'Del',
 		85 => 'End',
-		86 => '', # TODO
+		86 => 'PageDown',
 		87 => 'Up Arrow',
 		88 => 'Left Arrow',
 		89 => 'Down Arrow',
 		90 => 'Right Arrow',
+		108 => 'Media Next Track',
+		109 => 'Media Previous Track',
+		110 => 'Media Stop',
+		111 => 'Media Play/Pause',
+		112 => 'Media Mute',
+		113 => 'Media VolumeUp',
+		114 => 'Media VolumeDn',
+		115 => 'Media Select',
+		116 => 'WWW Email',
+		117 => 'Media Calculator',
+		118 => 'Media My Computer',
+		119 => 'WWW Search',
+		120 => 'WWW Home',
+		121 => 'WWW Back',
+		122 => 'WWW Forward',
+		123 => 'WWW Stop',
+		124 => 'WWW Refresh',
+		125 => 'WWW Favorites',
 		126 => 'Mouse Mouse Left',
 		127 => 'Mouse Mouse Right',
 		128 => 'Mouse Mouse Up',
@@ -109,6 +127,7 @@ class NiZ
 		131 => 'Mouse Key Right',
 		132 => 'Mouse Key Middle',
 		144 => 'Backlight Lightness-',
+		145 => 'Backlight Lightness+',
 		149 => 'Adjust Trigger Point',
 		152 => 'Ctrl/CapsLock exchange',
 		153 => 'winlock',
@@ -125,6 +144,7 @@ class NiZ
 		171 => 'Game',
 		172 => 'ECO',
 		175 => 'Key Response Delay',
+		199 => 'Mouse Left Double Click',
 	}
 
 	COMMAND_READ_SERIAL = 0x10
@@ -320,6 +340,16 @@ if $0 == __FILE__
 			title: "#{niz.version} #{niz.keycount} keys",
 			headings: ['Key ID', 'Normal', 'Right Fn', 'Left Fn', 'Count'],
 		)
+
+		format_key = lambda do |hwcode|
+			name = NiZ.name_from_hwcode(hwcode)
+			if hwcode && hwcode.nonzero?
+				"[% 3d] %s" % [hwcode, name]
+			else
+				""
+			end
+		end
+
 		niz.keycount.times do |i|
 			key_id = i + 1
 			
@@ -330,9 +360,9 @@ if $0 == __FILE__
 
 			table << [
 				key_id,
-				NiZ.name_from_hwcode(mapping[0][key_id]),
-				NiZ.name_from_hwcode(mapping[1][key_id]),
-				NiZ.name_from_hwcode(mapping[2][key_id]),
+				format_key[mapping[0][key_id]],
+				format_key[mapping[1][key_id]],
+				format_key[mapping[2][key_id]],
 				counts[i]
 			]
 		end
