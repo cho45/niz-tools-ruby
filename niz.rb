@@ -270,6 +270,15 @@ class NiZ
 		send_command(COMMAND_KEYLOCK, "\x01")
 	end
 
+	def calibration_init
+		send_command(COMMAND_INITIAL_CALIB)
+	end
+
+	def calibration_press
+		send_command(COMMAND_PRESS_CALIB)
+		p recv_data
+	end
+
 	# reset all mapping
 	# and write mapping
 	# you should write all keymap everytime.
@@ -302,6 +311,7 @@ class NiZ
 	end
 end
 
+p $0, __FILE__
 if $0 == __FILE__
 	require 'progress_bar'
 	require 'terminal-table'
