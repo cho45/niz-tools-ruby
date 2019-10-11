@@ -1,15 +1,20 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.7.0)
+      public_suffix (>= 2.0.2, < 5.0)
     ffi (1.11.1)
     hid_api (0.1.1)
       ffi (~> 1.9)
     highline (2.0.2)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     mustermann (1.0.3)
     options (2.3.2)
     progress_bar (1.3.0)
       highline (>= 1.6, < 3)
       options (~> 2.3.0)
+    public_suffix (4.0.1)
     rack (2.0.7)
     rack-protection (2.0.7)
       rack
@@ -28,6 +33,7 @@ PLATFORMS
 
 DEPENDENCIES
   hid_api
+  launchy
   progress_bar
   sinatra
   terminal-table

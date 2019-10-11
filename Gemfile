@@ -9,4 +9,5 @@ gem "hid_api"
 gem "progress_bar"
 gem "terminal-table"
 gem "sinatra"
+gem "launchy"
 

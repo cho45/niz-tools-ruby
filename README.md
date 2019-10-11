@@ -99,3 +99,8 @@ Reading key counter...
 
 See [./write-example.rb](./write-example.rb)
 
+## Calibration
+
+```
+$ bundle exec calib.rb
+```
